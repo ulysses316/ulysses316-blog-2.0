@@ -1,0 +1,97 @@
+body{
+    background-color: #f5f4f1;
+}
+
+p, span,a{
+    font-family: 'Anonymous Pro', monospace !important;
+}
+
+h3,h4,h5{
+    font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+h1,h2{
+    font-family: 'Source Serif Pro', serif !important;
+}
+
+/* {
+    font-family: 'Montserrat', sans-serif;
+} */
+
+.logo-title{
+    font-family: 'Anonymous Pro', monospace !important;
+    margin: 0;
+}
+
+.my-container{
+    margin: 0 auto;
+    width: 92%;
+}
+
+.typewriter{
+    height: 88vh;
+    background-color: #303030;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 50px;
+}
+
+#typewriter span{
+    color: #f5f4f1;
+    font-size: 60px;
+}
+
+@media only screen and (max-width: 400px) {
+    #typewriter span{
+        font-size: 35px;
+    }
+  }
+
+footer{
+    background-color: #303030;
+}
+
+footer p{
+    color: #f5f4f1;
+}
+
+footer a,span{
+    color: #f5f4f1;
+    padding-right: 5px;
+    font-weight: lighter;
+    font-size: 15px;
+}
+
+footer a:hover{
+    color: #f5f4f1;
+}
+
+.navbar-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .navbar-footer{
+        flex-direction: column;
+        gap: 10px;
+    }
+    footer a{
+        text-align: center;
+    }
+  }
+
+input, textarea{
+    background: transparent !important;
+    width: 100%;
+}
+
+.icon-social{
+    font-size: 20px;
+}
+
+.side-nav{
+    background-color: #303030 !important;
+}

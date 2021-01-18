@@ -1,0 +1,36 @@
+<!-- NAVBAR -->
+    <div class="uk-navbar-container uk-container uk-navbar-transparent uk-padding" uk-navbar>
+        <div class="uk-navbar-center">
+            <a href="#"><h1 class="logo-title">ulysses316</h1></a>
+        </div>
+        <div class="uk-navbar-right">
+            <a class="uk-navbar-toggle" href="#">
+                <a href="#offcanvas-navbar" class="uk-navbar-toggle" uk-navbar-toggle-icon href="#" uk-toggle></a>
+            </a>
+        </div>
+    </div>
+
+    <div id="offcanvas-navbar" uk-offcanvas="flip: true; overlay: true">
+        <div class="uk-offcanvas-bar uk-flex uk-flex-column side-nav">
+
+            <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
+                <li><a href="{{ url_for("index") }}">Home</a></li>
+                <li><a href="#">Sobre mi</a></li>
+                <li><a href="#">Portafolio</a></li>
+                <li><a href="">Charlas / Cursos</a></li>
+                <li><a href="#">CV</a></li>
+                <li><a href="{{ url_for("blog.blog") }}">Blog</a></li>
+                <li class="uk-nav-divider"></li>
+                <div class="uk-flex uk-flex-around uk-padding-small">
+                    <a class="icon-social" href="https://www.instagram.com/ulysses.316/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a class="icon-social" href="https://www.facebook.com/ulysses316/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a class="icon-social" href="https://twitter.com/ulysses_316" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a class="icon-social" href="https://www.linkedin.com/in/ulysses316/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a class="icon-social" href="https://open.spotify.com/user/ulysses316hugm" target="_blank"><i class="fab fa-spotify"></i></a>
+                    <a class="icon-social" href="https://github.com/ulysses316/" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </ul>
+
+        </div>
+    </div>
+<!-- NAVBAR -->

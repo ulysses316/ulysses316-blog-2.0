@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <main class="uk-margin">
+        <h1 class="uk-text-center" style="font-size:63px">Blog</h1>
+        <section class="uk-child-width-1-4@m uk-grid-small uk-padding" uk-grid>
+            <!-- CARD Begin -->
+            {% for post in posts %}
+            <div>
+            <a href="{{ url_for('blog.post', id=post['id']) }}">
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top">
+                        <img width="100%" src="https://picsum.photos/200/" alt="">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title">{{ post['title'] }}</h3>
+                        <p class="">
+                            <div class="uk-article-meta">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+                            {% if g.user['id'] == post['author_id'] %}
+                              <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+                            {% endif %}
+                            <p class="body project-description ">{{ post['body'] }}</p>
+                        </p>
+                    </div>
+                </div>
+            </a>
+            </div>
+
+            {% endfor %}
+            <!-- CARD END -->
+        </section>
+    </main>
+
+{% endblock %}

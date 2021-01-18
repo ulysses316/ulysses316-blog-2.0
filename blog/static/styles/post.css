@@ -1,0 +1,9 @@
+.container-post{
+    /* display: flex;
+    justify-content: center; */
+}
+
+.container-post{
+    margin:0;
+    padding:0 20%;
+}

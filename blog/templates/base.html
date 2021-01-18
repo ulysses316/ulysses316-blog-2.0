@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/normalize.css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/master.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/uikit/dist/css/uikit.min.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Montserrat:wght@200&family=Roboto+Condensed&family=Source+Serif+Pro:wght@900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3ec5c7c8b1.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+{% include 'components/nav.html' %}
+
+{% block content %}{% endblock %}
+
+{% include 'components/footer.html' %}
+
+
+    <script src="{{ url_for('static', filename='node_modules/uikit/dist/js/uikit.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='node_modules/typewriter-effect/dist/core.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/type.js') }}"></script>
+</body>
+</html>
