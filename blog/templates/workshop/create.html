@@ -6,7 +6,7 @@
 
 {% block content %}
 <main class="container-post">
-  <form class="uk-margin" method="post">
+  <form class="uk-margin" method="post" enctype=multipart/form-data>
     <div class="uk-margin">
         <input class="uk-input" placeholder="Titulo"  name="title" id="title" value="{{ request.form['title'] }}" required>
     </div>
@@ -18,8 +18,8 @@
     </div>
       <div class="uk-margin" uk-margin>
         <div uk-form-custom="target: true">
-            <input type="file">
-            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
+            <input name="file" type="file">
+            <input  id="file" class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
         </div>
     </div>
     <div class="uk-text-center">

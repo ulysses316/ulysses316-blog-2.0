@@ -9,3 +9,17 @@
     flex-direction: column !important;
   }
 }
+
+.github-description{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.github-card a{
+    color: black;
+}
+.github-card a:hover{
+    color: black;
+}

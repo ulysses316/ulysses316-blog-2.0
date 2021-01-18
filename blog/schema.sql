@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS workshops;
-DROP TABLE IF EXISTS portafolio;
+DROP TABLE IF EXISTS projects;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -15,6 +15,7 @@ CREATE TABLE post (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
   body TEXT NOT NULL,
+  file TEXT,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
 
@@ -25,6 +26,7 @@ CREATE TABLE workshops (
   title TEXT NOT NULL,
   body TEXT NOT NULL,
   url TEXT NOT NULL,
+  file TEXT,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
 
