@@ -1,35 +1,22 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Edit "{{ workshop['title'] }}"{% endblock %}</h1>
+  <h1>{% block title %}Edit "{{ projects['title'] }}"{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
  <main class="container-post uk-margin">
   <form method="post">
     <div class="uk-margin">
-        <input class="uk-input" placeholder="Titulo" name="title" id="title"
-      value="{{ request.form['title'] or workshop['title'] }}" required>
-    </div>
-    <div class="uk-margin">
-        <textarea class="uk-textarea" rows="5" placeholder="Texto" name="body" id="body">{{ request.form['body'] or workshop['body'] }}</textarea>
-    </div>
-      <div class="uk-margin">
-        <input class="uk-input" placeholder="URL" name="url" id="url"
-      value="{{ request.form['url'] or workshop['title'] }}" required>
-    </div>
-      <div class="uk-margin" uk-margin>
-        <div uk-form-custom="target: true">
-            <input type="file">
-            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-        </div>
+        <input class="uk-input" placeholder="URL" name="urlRepo" id="urlRepo"
+      value="{{ request.form['urlRepo'] or projects['url'] }}" required>
     </div>
     <div class="uk-text-center">
         <button type="submit" class="uk-button uk-button-primary">Guardar</button>
     </div>
   </form>
   <hr>
-  <form action="{{ url_for('workshop.delete', id=workshop['id']) }}" method="post">
+  <form action="{{ url_for('portafolio.delete', id=projects['id']) }}" method="post">
     <div class="uk-text-center">
         <button type="submit" class="uk-button uk-button-danger" onclick="return confirm('Are you sure?');">Borrar</button>
     </div>

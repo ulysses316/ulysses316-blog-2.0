@@ -8,19 +8,7 @@
 <main class="container-post">
   <form class="uk-margin" method="post">
     <div class="uk-margin">
-        <input class="uk-input" placeholder="Titulo"  name="title" id="title" value="{{ request.form['title'] }}" required>
-    </div>
-    <div class="uk-margin">
-        <textarea class="uk-textarea" rows="5" placeholder="Texto" name="body" id="body">{{ request.form['body'] }}</textarea>
-    </div>
-      <div class="uk-margin">
-        <input class="uk-input" placeholder="URL"  name="url" id="url" value="{{ request.form['url'] }}" required>
-    </div>
-      <div class="uk-margin" uk-margin>
-        <div uk-form-custom="target: true">
-            <input type="file">
-            <input class="uk-input uk-form-width-medium" type="text" placeholder="Select file" disabled>
-        </div>
+        <input class="uk-input" placeholder="URL"  name="urlRepo" id="urlRepo" value="{{ request.form['urlRepo'] }}" required>
     </div>
     <div class="uk-text-center">
         <button type="submit" class="uk-button uk-button-primary">Guardar</button>

@@ -4,24 +4,55 @@
 
     <main class="uk-margin">
         <h1 class="uk-text-center" style="font-size:63px">Portafolio</h1>
-        <section class="uk-child-width-1-4@m uk-grid-small uk-padding" uk-grid>
-            <!-- CARD Begin -->
-            <div>
-                <div class="uk-card uk-card-default">
-                    <div class="uk-card-media-top">
-                        <img width="100%" src="https://picsum.photos/200/" alt="">
+        <section class="uk-child-width-1-2@m uk-grid-small uk-padding" uk-grid>
+            <!-- My Info Github Card-->
+            <div class="uk-width-1-1">
+                <div class="uk-flex uk-flex-center uk-flex-middle">
+                <div class="uk-card uk-card-default uk-width-1-2@m">
+                    <div class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                <img class="uk-border-circle" width="40" height="40" src="{{ r['avatar_url'] }}">
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom">{{ r['login'] }}</h3>
+                                <a target="_blank" href="https://github.com/ulysses316" class="uk-text-meta uk-margin-remove-top uk-text-primary">Visita mi perfil</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="uk-card-body">
-                        <h3 class="uk-card-title">Media Top</h3>
-                        <p class="project-description">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Exercitationem laboriosam beatae veritatis itaque.
-                            Ex nemo minus asperiores, porro praesentium exercitationem a dolorem delectus mollitia accusamus id soluta facilis ullam sint!
+                        <p class="uk-text-center">
+                            {{ r['bio'] }}
                         </p>
+                    </div>
+                    <div class="uk-card-footer">
+                        <div class="uk-flex uk-flex-between uk-flex-middle card-github">
+                            <p class="uk-margin-remove">{{ r['followers'] }} Followers</p>
+                            <p class="uk-margin-remove">{{ r['following'] }} Following</p>
+                            <p class="uk-margin-remove">{{ r['public_repos'] }} Public Repos</p>
+                        </div>
+                        <hr>
                     </div>
                 </div>
             </div>
-                <!-- CARD END -->
+            </div>
+            <!-- My Info Github Card-->
+            <!-- CARD Begin -->
+            {% for project in projects %}
+            <div class="uk-width-1-2@m">
+                <a href="{{ project['url'] }}">
+                    <div class="uk-card uk-card-default uk-card-body uk-width-1-1@m">
+                    <div class="uk-card-badge uk-label">{{ project['language'] }}</div>
+                    <h3 class="uk-card-title">{{  project['title'] }}</h3>
+                    <p>{{ project['description'] }}</p>
+                    {% if g.user['id'] == project['author_id'] %}
+                         <a class="action" href="{{ url_for('portafolio.update', id=project['id']) }}">Edit</a>
+                    {% endif %}
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            <!-- CARD END -->
         </section>
     </main>
 

@@ -2,3 +2,10 @@
     width: 200px;
     border-radius: 100%;
 }
+
+
+@media screen and (max-width: 600px) {
+  .card-github{
+    flex-direction: column !important;
+  }
+}

@@ -35,14 +35,10 @@ def create_app(test_config=None):
     def cv():
         return redirect(url_for('static', filename='Hector-ulises-gonzalez-medel.pdf'))
 
-    @app.route('/portafolio')
-    def portafolio():
-        return render_template('others/portafolio.html')
-
-    from . import db, auth, blog, workshop
+    from . import db, auth, blog, workshop, portafolio
     db.init_app(app)
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
     app.register_blueprint(workshop.bp)
-
+    app.register_blueprint(portafolio.bp)
     return app

@@ -16,7 +16,7 @@
             <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical">
                 <li><a href="{{ url_for("index") }}">Home</a></li>
                 <li><a href="{{ url_for("about") }}">Sobre mi</a></li>
-                <li><a href="{{ url_for("portafolio") }}">Portafolio</a></li>
+                <li><a href="{{ url_for("portafolio.portafolio") }}">Portafolio</a></li>
                 <li><a href="{{ url_for("workshop.workshop") }}">Charlas / Cursos</a></li>
                 <li><a href="{{ url_for("cv") }}">CV</a></li>
                 <li><a href="{{ url_for("blog.blog") }}">Blog</a></li>
@@ -35,6 +35,7 @@
                     <li><a href="{{ url_for("auth.register") }}">Register</a></li>
                     <li><a href="{{ url_for("blog.create") }}">Create Post</a></li>
                     <li><a href="{{ url_for("workshop.create") }}">Create Workshop</a></li>
+                    <li><a href="{{ url_for("portafolio.create") }}">Create Project</a></li>
                 {% endif %}
             </ul>
 
