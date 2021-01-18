@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 
 
 def create_app(test_config=None):
@@ -28,6 +28,12 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
         return render_template('index.html')
+    @app.route('/about')
+    def about():
+        return render_template("others/about.html")
+    @app.route('/cv')
+    def cv():
+        return redirect(url_for('static', filename='Hector-ulises-gonzalez-medel.pdf'))
 
     from . import db, auth, blog
     db.init_app(app)
