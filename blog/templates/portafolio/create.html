@@ -13,6 +13,9 @@
     <div class="uk-margin">
         <textarea class="uk-textarea" rows="5" placeholder="Texto" name="body" id="body">{{ request.form['body'] }}</textarea>
     </div>
+      <div class="uk-margin">
+        <input class="uk-input" placeholder="URL"  name="url" id="url" value="{{ request.form['url'] }}" required>
+    </div>
       <div class="uk-margin" uk-margin>
         <div uk-form-custom="target: true">
             <input type="file">

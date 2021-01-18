@@ -30,14 +30,19 @@ def create_app(test_config=None):
         return render_template('index.html')
     @app.route('/about')
     def about():
-        return render_template("others/about.html")
+        return render_template("about.html")
     @app.route('/cv')
     def cv():
         return redirect(url_for('static', filename='Hector-ulises-gonzalez-medel.pdf'))
 
-    from . import db, auth, blog
+    @app.route('/portafolio')
+    def portafolio():
+        return render_template('others/portafolio.html')
+
+    from . import db, auth, blog, workshop
     db.init_app(app)
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
+    app.register_blueprint(workshop.bp)
 
     return app

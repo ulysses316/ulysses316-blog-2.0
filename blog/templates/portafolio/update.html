@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Edit "{{ post['title'] }}"{% endblock %}</h1>
+  <h1>{% block title %}Edit "{{ workshop['title'] }}"{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -9,10 +9,14 @@
   <form method="post">
     <div class="uk-margin">
         <input class="uk-input" placeholder="Titulo" name="title" id="title"
-      value="{{ request.form['title'] or post['title'] }}" required>
+      value="{{ request.form['title'] or workshop['title'] }}" required>
     </div>
     <div class="uk-margin">
-        <textarea class="uk-textarea" rows="5" placeholder="Texto" name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
+        <textarea class="uk-textarea" rows="5" placeholder="Texto" name="body" id="body">{{ request.form['body'] or workshop['body'] }}</textarea>
+    </div>
+      <div class="uk-margin">
+        <input class="uk-input" placeholder="URL" name="url" id="url"
+      value="{{ request.form['url'] or workshop['title'] }}" required>
     </div>
       <div class="uk-margin" uk-margin>
         <div uk-form-custom="target: true">
@@ -25,7 +29,7 @@
     </div>
   </form>
   <hr>
-  <form action="{{ url_for('blog.delete', id=post['id']) }}" method="post">
+  <form action="{{ url_for('workshop.delete', id=workshop['id']) }}" method="post">
     <div class="uk-text-center">
         <button type="submit" class="uk-button uk-button-danger" onclick="return confirm('Are you sure?');">Borrar</button>
     </div>

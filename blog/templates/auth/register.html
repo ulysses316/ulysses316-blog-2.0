@@ -5,13 +5,17 @@
 {% endblock %}
 
 {% block content %}
- <main class="container-post uk-margin">
+ <main class="container-post">
   <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
+    <div class="uk-margin">
+        <input placeholder="Username" class="uk-input" name="username" id="username" required>
+    </div>
+    <div class="uk-margin">
+        <input placeholder="Password" class="uk-input" type="password" name="password" id="password" required>
+    </div>
+    <div class="uk-margin uk-text-center">
+        <button type="submit" class="uk-button uk-button-primary">Registrar</button>
+    </div>
   </form>
  </main>
 {% endblock %}
