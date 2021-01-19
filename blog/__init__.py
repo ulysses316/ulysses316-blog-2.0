@@ -16,7 +16,7 @@ def create_app(test_config=None):
         MAIL_USE_SSL= False,
         MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
         MAIL_PASSWORD= os.environ.get('MAIL_PASSWORD'),
-        MAIL_DEFAULT_SENDER='joedoefirebase@gmail.com',
+        MAIL_DEFAULT_SENDER=os.environ.get('MAIL_USERNAME'),
         MAIL_MAX_EMAILS=None,
         MAIL_ASCII_ATTACHMENTS =False,
     )
