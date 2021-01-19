@@ -1,22 +1,25 @@
 import os
-
 from flask import Flask, render_template, redirect, url_for
-from flask_mail import Mail
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
+# Inicializamos SQLAlchemy en la variable db
+db = SQLAlchemy()
+
+# La funcion principal que define todas las propiedades de nuestra app
 def create_app(test_config=None):
-    # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY = os.environ.get('SECRET_KEY'),
-        DATABASE = os.path.join(app.instance_path, 'blog.sqlite'),
+        SECRET_KEY = 'dev',
+        SQLALCHEMY_DATABASE_URI= os.path.join('sqlite:///db.sqlite3'),
         UPLOAD_FOLDER = os.path.join(app.static_folder, 'upload'),
         MAIL_SERVER='smtp.googlemail.com',
         MAIL_PORT= 587,
         MAIL_USE_TLS= True,
         MAIL_USE_SSL= False,
-        MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
-        MAIL_PASSWORD= os.environ.get('MAIL_PASSWORD'),
-        MAIL_DEFAULT_SENDER=os.environ.get('MAIL_USERNAME'),
+        MAIL_USERNAME='joedoefirebase@gmail.com',
+        MAIL_PASSWORD= '7vhN7Fx5m7k2wnHP',
+        MAIL_DEFAULT_SENDER='joedoefirebase@gmail.com',
         MAIL_MAX_EMAILS=None,
         MAIL_ASCII_ATTACHMENTS =False,
     )
@@ -45,7 +48,16 @@ def create_app(test_config=None):
     def cv():
         return redirect(url_for('static', filename='Hector-ulises-gonzalez-medel.pdf'))
 
-    from . import db, auth, blog, workshop, portafolio, email
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
+
+    from .models import User
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
+    from . import auth, blog, workshop, portafolio, email
     db.init_app(app)
 
     app.register_blueprint(auth.bp)

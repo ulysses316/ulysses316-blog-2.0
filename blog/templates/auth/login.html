@@ -6,8 +6,16 @@
 {% block content %}
  <main class="container-post uk-margin">
   <form method="post">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="uk-alert-danger" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p class="uk-text-center">{{ messages[0] }}</p>
+            </div>
+        {% endif %}
+    {% endwith %}
     <div class="uk-margin">
-        <input class="uk-input" placeholder="Username" name="username" id="username" required>
+        <input class="uk-input" placeholder="Email" name="email" id="email" required>
     </div>
     <div class="uk-margin">
         <input class="uk-input" placeholder="Password" type="password" name="password" id="password" required>

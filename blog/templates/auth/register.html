@@ -7,8 +7,19 @@
 {% block content %}
  <main class="container-post">
   <form method="post">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="uk-alert-danger" uk-alert>
+                <a class="uk-alert-close" uk-close></a>
+                <p class="uk-text-center">{{ messages[0] }} dirigete a <a href="{{ url_for('auth.login') }}">Login</a></p>
+            </div>
+        {% endif %}
+    {% endwith %}
     <div class="uk-margin">
-        <input placeholder="Username" class="uk-input" name="username" id="username" required>
+        <input placeholder="Name" class="uk-input" name="name" id="name" required>
+    </div>
+    <div class="uk-margin">
+        <input placeholder="Email" class="uk-input" name="email" id="email" required>
     </div>
     <div class="uk-margin">
         <input placeholder="Password" class="uk-input" type="password" name="password" id="password" required>
