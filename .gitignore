@@ -18,3 +18,5 @@ blog/static/node_modules
 .idea
 
 notas.txt
+
+blog/static/upload

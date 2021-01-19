@@ -7,15 +7,15 @@ def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY = 'dev',
+        SECRET_KEY = os.environ.get('SECRET_KEY'),
         DATABASE = os.path.join(app.instance_path, 'blog.sqlite'),
         UPLOAD_FOLDER = os.path.join(app.static_folder, 'upload'),
         MAIL_SERVER='smtp.googlemail.com',
         MAIL_PORT= 587,
         MAIL_USE_TLS= True,
         MAIL_USE_SSL= False,
-        MAIL_USERNAME='joedoefirebase@gmail.com',
-        MAIL_PASSWORD= '',
+        MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
+        MAIL_PASSWORD= os.environ.get('MAIL_PASSWORD'),
         MAIL_DEFAULT_SENDER='joedoefirebase@gmail.com',
         MAIL_MAX_EMAILS=None,
         MAIL_ASCII_ATTACHMENTS =False,
