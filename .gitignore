@@ -16,3 +16,5 @@ venv
 blog/static/node_modules
 
 .idea
+
+notas.txt

@@ -28,19 +28,23 @@
                     </div>
                 </div>
                 <div class="">
-                    <form class="uk-width-1-1 uk-text-center">
+                    <form action="{{ url_for('email.email') }}" class="uk-width-1-1 uk-text-center" method="post">
                             <p class="uk-legend">Contactame</p>
 
                             <div class="uk-margin">
-                                <input class="uk-input" type="text" placeholder="Nombre completo">
+                                <input name="subject" class="uk-input" type="text" placeholder="Asunto">
                             </div>
 
                             <div class="uk-margin">
-                                <input class="uk-input" type="text" placeholder="Correo electronico">
+                                <input name="nameSender" class="uk-input" type="text" placeholder="Nombre">
                             </div>
 
                             <div class="uk-margin">
-                                <textarea class="uk-textarea" rows="5" placeholder="Mensaje"></textarea>
+                                <input name="senderEmail" class="uk-input" type="text" placeholder="Correo electronico">
+                            </div>
+
+                            <div class="uk-margin">
+                                <textarea name="message" class="uk-textarea" rows="5" placeholder="Mensaje"></textarea>
                             </div>
 
                             <button type="submit" class="uk-button uk-button-primary">Enviar</button>
