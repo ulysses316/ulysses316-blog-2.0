@@ -4,6 +4,10 @@ from flask import (
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 import os
+from flask_login import current_user
+from .models import Workshop
+from . import db
+from .auth import login_required
 
 from blog.auth import login_required
 
@@ -18,6 +22,7 @@ def allowed_file(filename):
 
 @bp.route('/workshops')
 def workshop():
+    workshops = Workshop.query.order_by(Workshop.created)
     return render_template('workshop/workshops.html', workshops=workshops)
 
 @bp.route('/workshop/create', methods=('GET', 'POST'))
@@ -32,15 +37,17 @@ def create():
 
         if 'file' not in request.files:
             error = 'No file part'
-
         if file.filename == '':
             error = 'No selected file'
         if file and allowed_file(file.filename):
             filename = "workshop/{}".format(secure_filename(file.filename))
             file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-
         if not title:
             error = 'Title is required.'
+
+        workshop = Workshop(author_id=current_user.get_id() ,title=title, body=body, url=url, file=filename)
+        db.session.add(workshop)
+        db.session.commit()
 
         if error is not None:
             flash(error)
@@ -49,27 +56,15 @@ def create():
 
     return render_template('workshop/create.html')
 
-def get_workshops(id, check_author=True):
-
-    if workshop is None:
-        abort(404, "Workshops id {0} doesn't exist.".format(id))
-
-    return workshop
-
 @bp.route('/workshop/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
-    workshops = get_workshops(id)
-
+    workshops = Workshop.query.get(id)
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
         url = request.form['url']
         file = request.files['file']
-        error = None
-
-        if 'file' not in request.files:
-            error = 'No file part'
 
         if file.filename == '':
             error = 'No selected file'
@@ -77,17 +72,24 @@ def update(id):
             filename = "workshop/{}".format(secure_filename(file.filename))
             file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
 
-        if not title:
-            error = 'Title is required.'
 
-        if error is not None:
-            flash(error)
-        else:
-            return redirect(url_for('workshop.workshop'))
+        if not file:
+            filename = workshops.file
+
+        workshops.title = title
+        workshops.body = body
+        workshops.url = url
+        workshops.file = filename
+        db.session.commit()
+
+        return redirect(url_for('workshop.workshop'))
 
     return render_template('workshop/update.html', workshop=workshops)
 
 @bp.route('/workshop/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
+    workshop = Workshop.query.get(id)
+    db.session.delete(workshop)
+    db.session.commit()
     return redirect(url_for('workshop.workshop'))

@@ -15,7 +15,7 @@
                     <div class="uk-card-body">
                         <h3 class="uk-card-title">{{ workshop['title'] }}</h3>
                         <p class="">
-                            {% if g.user['id'] %}
+                            {% if current_user.id == workshop['id'] %}
                               <a class="action" href="{{ url_for('workshop.update', id=workshop['id']) }}">Edit</a>
                             {% endif %}
                             <p class="body project-description ">{{ workshop['body'] }}</p>
