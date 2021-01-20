@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
+
 # Inicializamos SQLAlchemy en la variable db
 db = SQLAlchemy()
 
