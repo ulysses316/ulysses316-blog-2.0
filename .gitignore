@@ -20,3 +20,5 @@ blog/static/node_modules
 notas.txt
 
 blog/static/upload
+
+blog/db.sqlite3

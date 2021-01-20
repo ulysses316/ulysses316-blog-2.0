@@ -11,13 +11,13 @@
             <a href="{{ url_for('blog.post', id=post['id']) }}">
                 <div class="uk-card uk-card-default">
                     <div class="uk-card-media-top">
-                        <img width="100%" src="static/upload/{{ post['file'] }}" alt="">
+                        <img height="174 px" src="static/upload/{{ post['file'] }}" alt="">
                     </div>
                     <div class="uk-card-body">
                         <h3 class="uk-card-title">{{ post['title'] }}</h3>
                         <p class="">
-                            <div class="uk-article-meta">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-                            {% if g.user['id'] == post['author_id'] %}
+                            <div class="uk-article-meta">Escrito por H. Ulises G.M. el {{ post['created'].strftime('%Y-%m-%d') }}</div>
+                            {% if current_user.id == post['author_id'] %}
                               <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
                             {% endif %}
                             <p class="body project-description ">{{ post['body'] }}</p>
@@ -26,7 +26,6 @@
                 </div>
             </a>
             </div>
-
             {% endfor %}
             <!-- CARD END -->
         </section>

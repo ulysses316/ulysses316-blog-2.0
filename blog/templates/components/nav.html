@@ -29,7 +29,7 @@
                     <a class="icon-social" href="https://open.spotify.com/user/ulysses316hugm" target="_blank"><i class="fab fa-spotify"></i></a>
                     <a class="icon-social" href="https://github.com/ulysses316/" target="_blank"><i class="fab fa-github"></i></a>
                 </div>
-                {% if g.user['id']%}
+                {% if current_user.is_authenticated %}
                     <li class="uk-nav-divider"></li>
                     <li><a href="{{ url_for("auth.logout") }}">Logout</a></li>
                     <li><a href="{{ url_for("auth.register") }}">Register</a></li>
