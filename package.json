@@ -1,0 +1,21 @@
+{
+  "name": "ulysses-blog-2.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-prebuild": "cd blog/static && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ulysses316/ulysses316-blog-2.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ulysses316/ulysses316-blog-2.0/issues"
+  },
+  "homepage": "https://github.com/ulysses316/ulysses316-blog-2.0#readme"
+}
