@@ -12,7 +12,8 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY = 'dev',
-        SQLALCHEMY_DATABASE_URI= os.path.join('sqlite:///db.sqlite3'),
+        SQLALCHEMY_DATABASE_URI= 'postgresql://<user>:<password>@localhost:5432/<db>',
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
         UPLOAD_FOLDER = os.path.join(app.static_folder, 'upload'),
         MAIL_SERVER='smtp.googlemail.com',
         MAIL_PORT= 587,
