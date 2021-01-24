@@ -13,7 +13,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY = os.environ.get('SECRET_KEY'),
-        SQLALCHEMY_DATABASE_URI= os.environ.get('SQLALCHEMY_DATABASE_URI'),
+        SQLALCHEMY_DATABASE_URI= os.environ.get('DATABASE_URL'),
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         UPLOAD_FOLDER = os.path.join(app.static_folder, 'upload'),
         MAIL_SERVER='smtp.googlemail.com',
