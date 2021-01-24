@@ -2,10 +2,11 @@ import os
 from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-
+from flask_migrate import Migrate
 
 # Inicializamos SQLAlchemy en la variable db
 db = SQLAlchemy()
+migrate = Migrate()
 
 # La funcion principal que define todas las propiedades de nuestra app
 def create_app(test_config=None):
@@ -61,6 +62,7 @@ def create_app(test_config=None):
 
     from . import auth, blog, workshop, portafolio, email
     db.init_app(app)
+    migrate.init_app(app,db)
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
