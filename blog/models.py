@@ -4,14 +4,14 @@ import datetime
 
 class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(50))
-    name = db.Column(db.String(50))
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+    name = db.Column(db.String(100))
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
-    created = db.Column(db.DATETIME, default=datetime.datetime.now(), nullable=False)
+    created = db.Column(db.DateTime, default=datetime.datetime.now(), nullable=False)
     title = db.Column(db.TEXT, nullable=False)
     body = db.Column(db.TEXT, nullable=False)
     file = db.Column(db.TEXT, nullable=False)
@@ -19,7 +19,7 @@ class Post(db.Model):
 class Workshop(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
-    created = db.Column(db.DATETIME, default=datetime.datetime.now(), nullable=False)
+    created = db.Column(db.DateTime, default=datetime.datetime.now(), nullable=False)
     title = db.Column(db.TEXT, nullable=False)
     body = db.Column(db.TEXT, nullable=False)
     url = db.Column(db.TEXT,nullable=True)
@@ -28,7 +28,7 @@ class Workshop(db.Model):
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    created = db.Column(db.DATETIME, default=datetime.datetime.now(), nullable=False)
+    created = db.Column(db.DateTime, default=datetime.datetime.now(), nullable=False)
     title = db.Column(db.TEXT, nullable=False)
     body = db.Column(db.TEXT, nullable=False)
     url = db.Column(db.TEXT, nullable=True)
