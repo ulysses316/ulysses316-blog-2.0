@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block title %}Ulysses316{% endblock %}
-
 {% block content %}
     <main class="my-container uk-margin-bottom">
         <section class="typewriter">
@@ -9,3 +8,7 @@
     </main>
 {% endblock %}
 
+{% block scripts %}
+    <script src="{{ url_for('static', filename='node_modules/typewriter-effect/dist/core.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/type.js') }}"></script>
+{% endblock %}

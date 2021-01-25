@@ -40,3 +40,11 @@ Posterior a eso corremos los siguientes comandos para realizar las migraciones c
 - `flask db upgrade`
 
 Por último ya podemos correr el comando `flask run` para ver nuestra página.
+
+## Storage
+
+Actualmente tenemos configurado nuestra app para trabajar con S3 como storage de nuestra aplicación, para que funcione asi que al menos que trabajemos con archivos locales tendremos que agregar las siguientes variables de entorno también.
+- `S3_BUCKET_NAME`
+- `AWS_ACCESS_KEY`
+- `AWS_ACCESS_SECRET`
+- `S3_LOCATION`

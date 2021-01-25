@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+    <!--Metas-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content= "Bienvenidos a mí página web, aquí podrás conocer un poco más de mis proyectos y talleres que he dado y ocasionalmente entradas de blog que iré publicando" />
+    <meta name="author" content="Hector Ulises Gonzalez Medel" />
+    <meta name="robots" content= "index, follow">
+    <!--Estilos-->
     <link rel="shortcut icon" type="image/ico" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='node_modules/normalize.css/normalize.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/master.css') }}">
@@ -22,7 +27,7 @@
 
 
     <script src="{{ url_for('static', filename='node_modules/uikit/dist/js/uikit.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='node_modules/typewriter-effect/dist/core.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/type.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

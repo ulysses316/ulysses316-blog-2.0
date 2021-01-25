@@ -16,7 +16,7 @@
                             </div>
                             <div class="uk-width-expand">
                                 <h3 class="uk-card-title uk-margin-remove-bottom">{{ r['login'] }}</h3>
-                                <a target="_blank" href="https://github.com/ulysses316" class="uk-text-meta uk-margin-remove-top uk-text-primary">Visita mi perfil</a>
+                                <b><a target="_blank" href="https://github.com/ulysses316" class="uk-text-meta uk-margin-remove-top links-black">Visita mi perfil</a></b>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                     <div class="uk-card uk-card-default uk-card-body uk-width-1-1@m">
                     <div class="uk-card-badge uk-label">{{ project['language'] }}</div>
                     <h3 class="uk-card-title">{{  project['title'] }}</h3>
-                    <p class="github-description github-card">{{ project['body'] }}</p>
+                    <p class="github-description github-card link-cards">{{ project['body'] }}</p>
                     {% if current_user.id == project['author_id'] %}
                          <a class="action" href="{{ url_for('portafolio.update', id=project['id']) }}">Edit</a>
                     {% endif %}
