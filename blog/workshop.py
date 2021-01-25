@@ -8,6 +8,9 @@ from flask_login import current_user
 from .models import Workshop
 from . import db
 from .auth import login_required
+# AWS
+import boto3, botocore
+from .blog import upload_file_to_s3
 
 from blog.auth import login_required
 
@@ -35,17 +38,23 @@ def create():
         file = request.files['file']
         error = None
 
+        s3 = boto3.client(
+            "s3",
+            aws_access_key_id=current_app.config['S3_KEY'],
+            aws_secret_access_key=current_app.config['S3_SECRET']
+        )
+
         if 'file' not in request.files:
             error = 'No file part'
         if file.filename == '':
             error = 'No selected file'
         if file and allowed_file(file.filename):
-            filename = "workshop/{}".format(secure_filename(file.filename))
-            file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+            file.filename = "workshops/{}".format(secure_filename(file.filename))
+            output = upload_file_to_s3(s3, file, current_app.config['S3_BUCKET'])
         if not title:
             error = 'Title is required.'
 
-        workshop = Workshop(author_id=current_user.get_id() ,title=title, body=body, url=url, file=filename)
+        workshop = Workshop(author_id=current_user.get_id() ,title=title, body=body, url=url, file=output)
         db.session.add(workshop)
         db.session.commit()
 
@@ -66,11 +75,17 @@ def update(id):
         url = request.form['url']
         file = request.files['file']
 
+        s3 = boto3.client(
+            "s3",
+            aws_access_key_id=current_app.config['S3_KEY'],
+            aws_secret_access_key=current_app.config['S3_SECRET']
+        )
+
         if file.filename == '':
             error = 'No selected file'
         if file and allowed_file(file.filename):
-            filename = "workshop/{}".format(secure_filename(file.filename))
-            file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+            file.filename = "workshops/{}".format(secure_filename(file.filename))
+            output = upload_file_to_s3(s3, file, current_app.config['S3_BUCKET'])
 
 
         if not file:
@@ -79,7 +94,7 @@ def update(id):
         workshops.title = title
         workshops.body = body
         workshops.url = url
-        workshops.file = filename
+        workshops.file = output
         db.session.commit()
 
         return redirect(url_for('workshop.workshop'))

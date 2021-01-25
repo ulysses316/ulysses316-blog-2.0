@@ -11,7 +11,7 @@
             <a href="{{ url_for('blog.post', id=post['id']) }}">
                 <div class="uk-card uk-card-default">
                     <div class="uk-card-media-top">
-                        <img height="174 px" src="static/upload/{{ post['file'] }}" alt="">
+                        <img height="174 px" src="{{ post['file'] }}" alt="">
                     </div>
                     <div class="uk-card-body">
                         <h3 class="uk-card-title">{{ post['title'] }}</h3>
