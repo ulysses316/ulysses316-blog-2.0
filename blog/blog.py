@@ -61,7 +61,7 @@ def create():
         if file.filename == '':
             error = 'No selected file'
         if file and allowed_file(file.filename):
-            file.filename = secure_filename(file.filename)
+            file.filename = "blog/{}".format(secure_filename(file.filename))
         # AWS
             output = upload_file_to_s3(s3, file, current_app.config['S3_BUCKET'])
         # AWS
@@ -85,21 +85,28 @@ def update(id):
         file = request.files['file']
         error = None
 
+        s3 = boto3.client(
+            "s3",
+            aws_access_key_id=current_app.config['S3_KEY'],
+            aws_secret_access_key=current_app.config['S3_SECRET']
+        )
+
         if 'file' not in request.files:
             error = 'No file part'
 
         if file.filename == '':
             error = 'No selected file'
         if file and allowed_file(file.filename):
-            filename = "blog/{}".format(secure_filename(file.filename))
-            file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+            file.filename = "blog/{}".format(secure_filename(file.filename))
+            output = upload_file_to_s3(s3, file, current_app.config['S3_BUCKET'])
+
 
         if not file:
             filename = post.file
 
         post.title = title
         post.body = body
-        post.file = filename
+        post.file = output
         db.session.commit()
         return redirect(url_for('blog.blog'))
 

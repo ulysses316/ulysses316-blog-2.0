@@ -10,12 +10,12 @@
             <a target="_blank" href="{{ workshop['url'] }}">
                 <div class="uk-card uk-card-default">
                     <div class="uk-card-media-top">
-                        <img width="100%" src="static/upload/{{ workshop['file'] }}" alt="">
+                        <img width="100%" src="{{ workshop['file'] }}" alt="">
                     </div>
                     <div class="uk-card-body">
                         <h3 class="uk-card-title">{{ workshop['title'] }}</h3>
                         <p class="">
-                            {% if current_user.id == workshop['id'] %}
+                            {% if current_user %}
                               <a class="action" href="{{ url_for('workshop.update', id=workshop['id']) }}">Edit</a>
                             {% endif %}
                             <p class="body project-description ">{{ workshop['body'] }}</p>
