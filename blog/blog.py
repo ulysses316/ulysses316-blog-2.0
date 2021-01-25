@@ -8,6 +8,8 @@ from blog.auth import login_required
 from .models import Post
 from . import db
 from flask_login import current_user
+# AWS
+import boto3, botocore
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
@@ -18,6 +20,22 @@ bp = Blueprint('blog', __name__)
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def upload_file_to_s3(s3, file, bucket_name, acl="public-read"):
+    try:
+        s3.upload_fileobj(
+            file,
+            bucket_name,
+            file.filename,
+            ExtraArgs={
+                "ACL": acl,
+                "ContentType": file.content_type    #Set appropriate content type as per the file
+            }
+        )
+    except Exception as e:
+        print("Something Happened: ", e)
+        return e
+    return "{}{}".format(current_app.config["S3_LOCATION"], file.filename)
 
 @bp.route('/blog')
 def blog():
@@ -32,15 +50,23 @@ def create():
         body = request.form['body']
         file = request.files['file']
 
+        s3 = boto3.client(
+            "s3",
+            aws_access_key_id=current_app.config['S3_KEY'],
+            aws_secret_access_key=current_app.config['S3_SECRET']
+        )
+
         if 'file' not in request.files:
             error = 'No file part'
         if file.filename == '':
             error = 'No selected file'
         if file and allowed_file(file.filename):
-            filename = "blog/{}".format(secure_filename(file.filename))
-            file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+            file.filename = secure_filename(file.filename)
+        # AWS
+            output = upload_file_to_s3(s3, file, current_app.config['S3_BUCKET'])
+        # AWS
 
-        new_post = Post(author_id=current_user.get_id(), title=title, body=body, file=filename)
+        new_post = Post(author_id=current_user.get_id(), title=title, body=body, file=str(output))
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for('blog.blog'))
