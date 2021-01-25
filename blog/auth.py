@@ -1,14 +1,18 @@
-import functools
-
+# importaciones de flask
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+# Importaciones de seguridad para hashear nuestra contraseña
 from werkzeug.security import check_password_hash, generate_password_hash
+# Importacion de flask login
 from flask_login import login_user, logout_user, login_required
+# importaciones locales de nuestro modelo usuario y nuestro objeto db
 from .models import User
 from . import db
 
+# Creamos nuestro Blueprint
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+
 
 @bp.route('/register', methods=('GET', 'POST'))
 @login_required
