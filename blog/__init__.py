@@ -15,7 +15,6 @@ def create_app(test_config=None):
         SECRET_KEY = os.environ.get('SECRET_KEY'),
         SQLALCHEMY_DATABASE_URI= os.environ.get('SQLALCHEMY_DATABASE_URI'),
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
-        UPLOAD_FOLDER = os.path.join(app.static_folder, 'upload'),
         # Email
         MAIL_SERVER='smtp.googlemail.com',
         MAIL_PORT= 587,
