@@ -5,13 +5,14 @@
 {% endblock %}
 
 {% block content %}
+    {{ ckeditor.load() }}
 <main class="container-post">
   <form class="uk-margin" method="post" enctype=multipart/form-data>
     <div class="uk-margin">
         <input class="uk-input" placeholder="Titulo"  name="title" id="title" value="{{ request.form['title'] }}" required>
     </div>
     <div class="uk-margin">
-        <textarea class="uk-textarea" rows="5" placeholder="Texto" name="body" id="body">{{ request.form['body'] }}</textarea>
+         {{ ckeditor.create() }}
     </div>
       <div class="uk-margin" uk-margin>
         <div uk-form-custom="target: true">

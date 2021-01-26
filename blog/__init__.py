@@ -5,12 +5,13 @@ from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_ckeditor import CKEditor
 
 # Inicializamos SQLAlchemy en la variable db
 db = SQLAlchemy()
 # Unicializamos la variable migrate
 migrate = Migrate()
-
+ckeditor = CKEditor()
 # La funcion principal que define nuestra app y sus propiedades
 def create_app(test_config=None):
     # Creacion de la app
@@ -35,6 +36,8 @@ def create_app(test_config=None):
         S3_KEY=os.environ.get('AWS_ACCESS_KEY'),
         S3_SECRET=os.environ.get('AWS_ACCESS_SECRET'),
         S3_LOCATION=os.environ.get('S3_LOCATION'),
+        # ckeditor
+        CKEDITOR_PKG_TYPE='standard',
     )
 
     # Condicion para definir el test de nuestra app
@@ -79,6 +82,7 @@ def create_app(test_config=None):
     login_manager.login_view = 'auth.login'
     # Inicializamos login manager con nuestra app
     login_manager.init_app(app)
+    ckeditor.init_app(app)
 
     # Definimos a nuestro usuario de flask-login como la sesion activa
     @login_manager.user_loader
