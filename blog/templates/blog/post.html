@@ -9,7 +9,7 @@
 
 {% block content %}
 
-    <main class="container-post">
+    <main id="post">
          <article class="uk-article uk-margin-large">
              <h1 style="font-size:83px">{{ post['title'] }}</h1>
              <p class="uk-article-meta">Escrito por H. Ulises G.M. el {{ post['created'].strftime('%d-%m-%Y') }}</p>
@@ -17,4 +17,8 @@
          </article>
      </main>
 
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='scripts/style.js') }}"></script>
 {% endblock %}
