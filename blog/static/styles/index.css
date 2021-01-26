@@ -2,7 +2,7 @@ body{
     background-color: #f5f4f1;
 }
 
-p, span,a{
+p, span,a, li{
     font-family: 'Anonymous Pro', monospace !important;
 }
 
