@@ -34,10 +34,6 @@ def create_app(test_config=None):
         S3_LOCATION=os.environ.get('S3_LOCATION'),
         #ckeditor
         CKEDITOR_PKG_TYPE='standard',
-        CKEDITOR_ENABLE_CODESNIPPET=True,
-        CKEDITOR_CODE_THEME='monokai_sublime',
-        CKEDITOR_ENABLE_CSRF=True,
-        CKEDITOR_FILE_UPLOADER= 'upload',
     )
 
     if test_config is None:
