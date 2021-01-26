@@ -47,8 +47,9 @@ def blog():
 def create():
     if request.method == 'POST':
         title = request.form['title']
-        body = request.form['body']
+        body = request.form['ckeditor']
         file = request.files['file']
+
 
         s3 = boto3.client(
             "s3",
@@ -81,7 +82,7 @@ def update(id):
 
     if request.method == 'POST':
         title = request.form['title']
-        body = request.form['body']
+        body = request.form['ckeditor']
         file = request.files['file']
         error = None
 
@@ -100,9 +101,8 @@ def update(id):
             file.filename = "blog/{}".format(secure_filename(file.filename))
             output = upload_file_to_s3(s3, file, current_app.config['S3_BUCKET'])
 
-
         if not file:
-            filename = post.file
+            output = post.file
 
         post.title = title
         post.body = body

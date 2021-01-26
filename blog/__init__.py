@@ -3,11 +3,12 @@ from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_ckeditor import CKEditor
 
 # Inicializamos SQLAlchemy en la variable db
 db = SQLAlchemy()
 migrate = Migrate()
-
+ckeditor = CKEditor()
 # La funcion principal que define todas las propiedades de nuestra app
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -31,6 +32,12 @@ def create_app(test_config=None):
         S3_KEY=os.environ.get('AWS_ACCESS_KEY'),
         S3_SECRET=os.environ.get('AWS_ACCESS_SECRET'),
         S3_LOCATION=os.environ.get('S3_LOCATION'),
+        #ckeditor
+        CKEDITOR_PKG_TYPE='standard',
+        CKEDITOR_ENABLE_CODESNIPPET=True,
+        CKEDITOR_CODE_THEME='monokai_sublime',
+        CKEDITOR_ENABLE_CSRF=True,
+        CKEDITOR_FILE_UPLOADER= 'upload',
     )
 
     if test_config is None:
@@ -77,6 +84,7 @@ def create_app(test_config=None):
     from . import auth, blog, workshop, portafolio, email
     db.init_app(app)
     migrate.init_app(app,db)
+    ckeditor.init_app(app)
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)

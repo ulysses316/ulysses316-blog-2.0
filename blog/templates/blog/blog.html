@@ -20,7 +20,7 @@
                             {% if current_user.id == post['author_id'] %}
                               <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
                             {% endif %}
-                            <p class="body project-description ">{{ post['body'] }}</p>
+                            <!--<p class="body project-description ">{{ post['body'] }}</p>-->
                         </p>
                     </div>
                 </div>
