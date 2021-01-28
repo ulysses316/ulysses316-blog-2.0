@@ -74,6 +74,11 @@ def create_app(test_config=None):
     def page_not_found(e):
         return render_template('500.html'), 500
 
+    # SSL
+    @app.route("/.well-known/acme-challenge/nm4u_u4ezuCAcKsYEYbwJFyc_SP_Rr5imxXAZTkwcqg")
+    def acme():
+        return render_template('acme-challenge.nm4u_u4ezuCAcKsYEYbwJFyc_SP_Rr5imxXAZTkwcqg .txt')
+
     # Importamos nuestro modelo user desde nuestro archivo models
     from .models import User
     # Funcion que liga nuestro login con nuestra app
