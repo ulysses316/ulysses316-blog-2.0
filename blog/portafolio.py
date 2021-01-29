@@ -8,6 +8,7 @@ from . import db
 from .auth import login_required
 from flask_login import current_user
 from blog.auth import login_required
+from . import csrf
 
 bp = Blueprint('portafolio', __name__)
 
@@ -17,6 +18,7 @@ def portafolio():
     projects = Project.query.order_by(Project.created)
     return render_template('portafolio/portafolio.html', r=r, projects=projects)
 
+@csrf.exempt
 @bp.route('/portafolio/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -36,7 +38,7 @@ def create():
 
     return render_template('portafolio/create.html')
 
-
+@csrf.exempt
 @bp.route('/project/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
@@ -62,6 +64,7 @@ def update(id):
 
     return render_template('portafolio/update.html', projects=projects)
 
+@csrf.exempt
 @bp.route('/project/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):

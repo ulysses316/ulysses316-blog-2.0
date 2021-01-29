@@ -10,10 +10,11 @@ from flask_login import login_user, logout_user, login_required
 from .models import User
 from . import db
 
+from . import csrf
 # Creamos nuestro Blueprint
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-
+@csrf.exempt
 @bp.route('/register', methods=('GET', 'POST'))
 @login_required
 def register():
@@ -35,6 +36,7 @@ def register():
             return redirect(url_for('auth.login'))
     return render_template('auth/register.html')
 
+@csrf.exempt
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -53,6 +55,7 @@ def login():
         return redirect(url_for('index'))
     return render_template('auth/login.html')
 
+@csrf.exempt
 @bp.route('/logout')
 @login_required
 def logout():

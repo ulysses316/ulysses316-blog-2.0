@@ -2,6 +2,7 @@ import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, current_app,
 )
+from . import csrf
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 from blog.auth import login_required
@@ -42,6 +43,7 @@ def blog():
     posts = Post.query.order_by(Post.created)
     return render_template('blog/blog.html', posts=posts)
 
+@csrf.exempt
 @bp.route('/post/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -73,7 +75,7 @@ def create():
 
     return render_template('blog/create.html')
 
-
+@csrf.exempt
 @bp.route('/post/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
@@ -111,6 +113,7 @@ def update(id):
 
     return render_template('blog/update.html', post=post)
 
+@csrf.exempt
 @bp.route('/post/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):

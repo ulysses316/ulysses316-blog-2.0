@@ -13,6 +13,7 @@ import boto3, botocore
 from .blog import upload_file_to_s3
 
 from blog.auth import login_required
+from . import csrf
 
 bp = Blueprint('workshop', __name__)
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
@@ -28,6 +29,7 @@ def workshop():
     workshops = Workshop.query.order_by(Workshop.created)
     return render_template('workshop/workshops.html', workshops=workshops)
 
+@csrf.exempt
 @bp.route('/workshop/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -65,6 +67,7 @@ def create():
 
     return render_template('workshop/create.html')
 
+@csrf.exempt
 @bp.route('/workshop/<int:id>/update', methods=('GET', 'POST'))
 @login_required
 def update(id):
@@ -101,6 +104,7 @@ def update(id):
 
     return render_template('workshop/update.html', workshop=workshops)
 
+@csrf.exempt
 @bp.route('/workshop/<int:id>/delete', methods=('POST',))
 @login_required
 def delete(id):
