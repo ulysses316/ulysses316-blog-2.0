@@ -2,10 +2,12 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, current_app,
 )
 from flask_mail import Mail, Message
+from . import csrf
 
 bp = Blueprint('email', __name__)
 
 
+@csrf.exempt
 @bp.route("/email", methods=['GET', 'POST'])
 def email():
     if request.method == 'POST':
