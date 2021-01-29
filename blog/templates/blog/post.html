@@ -12,7 +12,7 @@
     <main id="post">
          <article class="uk-article uk-margin-large">
              <h1 class="titulo-secciones" {{ post['title'] }}</h1>
-             <p class="uk-article-meta">Escrito por H. Ulises G.M. el {{ post['created'].strftime('%d-%m-%Y') }}</p>
+             <p>Escrito por H. Ulises G.M. el {{ post['created'].strftime('%d-%m-%Y') }}</p>
              <p>{{ post['body']|safe }}</p>
          </article>
      </main>
