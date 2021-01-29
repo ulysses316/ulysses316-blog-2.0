@@ -21,7 +21,9 @@ csp = {
     'default-src': '\'self\'',
     'img-src': [SELF, '*'],
     'script-src': [SELF, '*.fontawesome.com'],
-    'style-src': [SELF, 'fonts.googleapis.com', 'fonts.gstatic.com']
+    'style-src': [SELF, 'fonts.googleapis.com', 'fonts.gstatic.com'],
+    'font-src': 'fonts.gstatic.com',
+    'connect-src': 'ka-f.fontawesome.com/'
 }
 # La funcion principal que define nuestra app y sus propiedades
 def create_app(test_config=None):
