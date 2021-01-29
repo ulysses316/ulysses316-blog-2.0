@@ -6,14 +6,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_ckeditor import CKEditor
-from flask_talisman import Talisman
+#from flask_talisman import Talisman
 
 # Inicializamos SQLAlchemy en la variable db
 db = SQLAlchemy()
 # Unicializamos la variable migrate
 migrate = Migrate()
 ckeditor = CKEditor()
-talisman = Talisman()
+#talisman = Talisman()
 # La funcion principal que define nuestra app y sus propiedades
 def create_app(test_config=None):
     # Creacion de la app
