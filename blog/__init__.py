@@ -5,13 +5,17 @@ from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from flask_seasurf import SeaSurf
 from flask_ckeditor import CKEditor
+from flask_talisman import Talisman
 
 # Inicializamos SQLAlchemy en la variable db
 db = SQLAlchemy()
 # Unicializamos la variable migrate
 migrate = Migrate()
 ckeditor = CKEditor()
+csrf = SeaSurf()
+talisman = Talisman()
 # La funcion principal que define nuestra app y sus propiedades
 def create_app(test_config=None):
     # Creacion de la app
@@ -96,7 +100,8 @@ def create_app(test_config=None):
     db.init_app(app)
     # Ligamos la funcion migrate de flask-migrate con la app
     migrate.init_app(app,db)
-
+    csrf.init_app(app)
+    talisman.init_app(app)
     # Registramos nuestros blueprints
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
