@@ -17,6 +17,12 @@ ckeditor = CKEditor()
 csrf = SeaSurf()
 talisman = Talisman()
 SELF = "'self'"
+csp = {
+    'default-src': '\'self\'',
+    'img-src': '*',
+    'script-src': 'kit.fontawesome.com'',
+    'style-src': ['fonts.googleapis.com', 'fonts.gstatic.com']
+}
 # La funcion principal que define nuestra app y sus propiedades
 def create_app(test_config=None):
     # Creacion de la app
@@ -102,25 +108,7 @@ def create_app(test_config=None):
     # Ligamos la funcion migrate de flask-migrate con la app
     migrate.init_app(app,db)
     csrf.init_app(app)
-    talisman.init_app(
-        app,
-        content_security_policy={
-            'default-src': SELF,
-            'img-src': '*',
-            'script-src': [
-                SELF,
-                'kit.fontawesome.com',
-            ],
-            'style-src': [
-                SELF,
-                'fonts.googleapis.com',
-            ],
-            'img-src': [
-                SELF,
-                'ulysses316.s3.amazonaws.com',
-            ]
-        },
-    )
+    talisman.init_app(app,content_security_policy=csp)
     # Registramos nuestros blueprints
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
