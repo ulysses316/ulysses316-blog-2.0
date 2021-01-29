@@ -22,12 +22,12 @@
                 <li><a href="{{ url_for("blog.blog") }}">Blog</a></li>
                 <li class="uk-nav-divider"></li>
                 <div class="uk-flex uk-flex-around uk-padding-small">
-                    <a class="icon-social" href="https://www.instagram.com/ulysses.316/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a class="icon-social" href="https://www.facebook.com/ulysses316/" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a class="icon-social" href="https://twitter.com/ulysses_316" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a class="icon-social" href="https://www.linkedin.com/in/ulysses316/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a class="icon-social" href="https://open.spotify.com/user/ulysses316hugm" target="_blank"><i class="fab fa-spotify"></i></a>
-                    <a class="icon-social" href="https://github.com/ulysses316/" target="_blank"><i class="fab fa-github"></i></a>
+                    <a class="icon-social" href="https://www.instagram.com/ulysses.316/" target="_blank"><img class="icon-footer" src="{{ url_for('static', filename='img/icons/instagram.png') }}" alt=""></a>
+                    <a class="icon-social" href="https://www.facebook.com/ulysses316/" target="_blank"><img class="icon-footer" src="{{ url_for('static', filename='img/icons/facebook.png') }}" alt=""></a>
+                    <a class="icon-social" href="https://twitter.com/ulysses_316" target="_blank"><img class="icon-footer" src="{{ url_for('static', filename='img/icons/twitter.png') }}" alt=""></a>
+                    <a class="icon-social" href="https://www.linkedin.com/in/ulysses316/" target="_blank"><img class="icon-footer" src="{{ url_for('static', filename='img/icons/linkedin.png') }}" alt=""></a>
+                    <a class="icon-social" href="https://open.spotify.com/user/ulysses316hugm" target="_blank"><img class="icon-footer" src="{{ url_for('static', filename='img/icons/spotify.png') }}" alt=""></a>
+                    <a class="icon-social" href="https://github.com/ulysses316/" target="_blank"><img class="icon-footer" src="{{ url_for('static', filename='img/icons/github.png') }}" alt=""></a>
                 </div>
                 {% if current_user.is_authenticated %}
                     <li class="uk-nav-divider"></li>

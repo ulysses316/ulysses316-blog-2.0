@@ -95,3 +95,8 @@ input, textarea{
 .side-nav{
     background-color: #303030 !important;
 }
+
+.icon-footer{
+    width: 25px;
+    height: 25px;
+}
