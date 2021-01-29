@@ -19,9 +19,9 @@ talisman = Talisman()
 SELF = "'self'"
 csp = {
     'default-src': '\'self\'',
-    'img-src': '*',
-    'script-src': 'kit.fontawesome.com',
-    'style-src': ['fonts.googleapis.com', 'fonts.gstatic.com']
+    'img-src': [SELF, '*'],
+    'script-src': [SELF, '*.fontawesome.com'],
+    'style-src': [SELF, 'fonts.googleapis.com', 'fonts.gstatic.com']
 }
 # La funcion principal que define nuestra app y sus propiedades
 def create_app(test_config=None):
